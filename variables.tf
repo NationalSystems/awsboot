@@ -1,4 +1,6 @@
-variable "appname" {}
+variable "appname" {
+  default = "bootdemo"
+}
 variable "aws_route53_zone_id" {}
 variable "aws_route53_dns" {}
 
@@ -8,8 +10,8 @@ variable "aws_key_name" {}
 variable "aws_key_path" {}
 variable "aws_secret_key" {}
 variable "aws_access_key" {}
-variable "provider_aws_region" {
-  default = "us-west-1"
+variable "aws_region" {
+  default = "us-west-2"
 }
 variable "amis" {
   default = {
