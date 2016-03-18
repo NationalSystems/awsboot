@@ -1,3 +1,9 @@
+provider "aws" {
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
+  region = "us-west-2"
+}
+
 resource "aws_instance" "bootdemo" {
     ami = "${lookup(var.amis, var.aws_region)}"
     instance_type = "t2.micro"
@@ -12,7 +18,7 @@ resource "aws_instance" "bootdemo" {
     user_data = "${file("base-config.txt")}"
     connection {
       user = "ec2-user"
-      private_key = "${file("~/.ssh/bootdemo.pem")}"
+      private_key = "${file("~/.ssh/${var.appname}.pem")}"
     }
    provisioner "local-exec" {
      command = "docker run -d -v $(pwd)/.ssh:/root/.ssh kagux/ssh-keygen"
