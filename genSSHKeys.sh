@@ -1,1 +1,1 @@
-docker run -d -v /Users/joshuacalloway/w/awsboot/.ssh:/root/.ssh kagux/ssh-keygen
+docker run -d -v $(pwd)/.ssh:/root/.ssh kagux/ssh-keygen
