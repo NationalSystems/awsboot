@@ -14,6 +14,9 @@ resource "aws_instance" "bootdemo" {
       user = "ec2-user"
       private_key = "${file("/Users/joshuacalloway/.ssh/bootdemo.pem")}"
     }
+   provisioner "local-exec" {
+     command = "docker run -d -v $(pwd)/.ssh:/root/.ssh kagux/ssh-keygen"
+   }
    provisioner "file" {
         source = ".ssh"
         destination = "/home/ec2-user"
