@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 export PATH=$(pwd):$PATH
 export TF_VAR_aws_access_key=$(findAccessKey.sh awsboot)
