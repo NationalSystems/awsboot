@@ -13,18 +13,15 @@ resource "aws_instance" "bootdemo" {
     }
     vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
     subnet_id = "${aws_subnet.bootdemo.id}"
-    key_name = "${var.aws_key_name}"
+    key_name = "awsboot"
     associate_public_ip_address = true
     user_data = "${file("base-config.txt")}"
     connection {
       user = "ec2-user"
-      private_key = "${file("~/.ssh/${var.appname}.pem")}"
+      private_key = "${file("~/.aws/awsboot.pem")}"
     }
-   provisioner "local-exec" {
-     command = "docker run -d -v $(pwd)/.ssh:/root/.ssh kagux/ssh-keygen"
-   }
    provisioner "file" {
-        source = ".ssh"
+        source = "/root/.ssh"
         destination = "/home/ec2-user"
     }
     provisioner "remote-exec" {
