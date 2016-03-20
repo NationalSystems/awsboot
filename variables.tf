@@ -1,3 +1,6 @@
+variable "awsboot_pem" {
+
+}
 variable "appname" {
   default = "bootdemo"
 }
