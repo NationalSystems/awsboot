@@ -1,12 +1,12 @@
-resource "aws_internet_gateway" "bootdemo" {
-    vpc_id = "${aws_vpc.bootdemo.id}"
+resource "aws_internet_gateway" "awsboot" {
+    vpc_id = "${aws_vpc.awsboot.id}"
 
     tags {
         Provisioned = "awsboot"
     }
 }
 
-resource "aws_vpc" "bootdemo" {
+resource "aws_vpc" "awsboot" {
   cidr_block = "10.1.2.0/28"
   enable_dns_support = "true"
   enable_dns_hostnames = "true"
@@ -15,26 +15,26 @@ resource "aws_vpc" "bootdemo" {
   }
 }
 
-resource "aws_route_table" "bootdemo" {
-  vpc_id = "${aws_vpc.bootdemo.id}"
+resource "aws_route_table" "awsboot" {
+  vpc_id = "${aws_vpc.awsboot.id}"
   route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_internet_gateway.bootdemo.id}"
+        gateway_id = "${aws_internet_gateway.awsboot.id}"
     }
 
     tags {
         Provisioned = "awsboot"
     }
 }
-resource "aws_main_route_table_association" "bootdemo" {
-  vpc_id = "${aws_vpc.bootdemo.id}"
-  route_table_id = "${aws_route_table.bootdemo.id}"
+resource "aws_main_route_table_association" "awsboot" {
+  vpc_id = "${aws_vpc.awsboot.id}"
+  route_table_id = "${aws_route_table.awsboot.id}"
 }
 
 resource "aws_security_group" "allow_all" {
   name = "allow_all"
   description = "Allow all inbound traffic"
-  vpc_id = "${aws_vpc.bootdemo.id}"
+  vpc_id = "${aws_vpc.awsboot.id}"
   ingress {
       from_port = 0
       to_port = 0
@@ -53,15 +53,15 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
-resource "aws_subnet" "bootdemo" {
-  vpc_id = "${aws_vpc.bootdemo.id}"
+resource "aws_subnet" "awsboot" {
+  vpc_id = "${aws_vpc.awsboot.id}"
   cidr_block = "10.1.2.0/28"
   tags {
     Provisioned = "awsboot"
   }
 }
 
-resource "aws_route53_record" "bootdemo" {
+resource "aws_route53_record" "awsboot" {
   zone_id = "${var.aws_route53_zone_id}"
   name = "${var.appname}.${var.aws_route53_dns}"
   type = "CNAME"
@@ -69,6 +69,6 @@ resource "aws_route53_record" "bootdemo" {
  
   weight = 10
   set_identifier = "${var.appname}"
-  records = ["${aws_instance.bootdemo.public_dns}"]
+  records = ["${aws_instance.awsboot.public_dns}"]
 }
 

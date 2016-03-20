@@ -4,7 +4,7 @@ provider "aws" {
   region = "us-west-2"
 }
 
-resource "aws_instance" "bootdemo" {
+resource "aws_instance" "awsboot" {
     ami = "${lookup(var.amis, var.aws_region)}"
     instance_type = "t2.micro"
     tags {
@@ -12,7 +12,7 @@ resource "aws_instance" "bootdemo" {
       Provisioned = "awsboot"
     }
     vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
-    subnet_id = "${aws_subnet.bootdemo.id}"
+    subnet_id = "${aws_subnet.awsboot.id}"
     key_name = "${var.appname}"
     associate_public_ip_address = true
     user_data = "${file("base-config.txt")}"
