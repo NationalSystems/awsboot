@@ -13,15 +13,16 @@ resource "aws_instance" "bootdemo" {
     }
     vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
     subnet_id = "${aws_subnet.bootdemo.id}"
-    key_name = "awsboot"
+    key_name = "${var.appname}"
     associate_public_ip_address = true
     user_data = "${file("base-config.txt")}"
     connection {
       user = "ec2-user"
-      private_key = "${file("~/.aws/awsboot.pem")}"
+      #private_key = "${file("~/.aws/awsboot.pem")}"
+      private_key = "${var.awsboot_pem}"
     }
    provisioner "file" {
-        source = "/root/.ssh"
+        source = "~/.ssh"
         destination = "/home/ec2-user"
     }
     provisioner "remote-exec" {
