@@ -35,6 +35,7 @@ onbuild env TF_VAR_appname bootdemo
 workdir /awsboot
 CMD source setenv.sh && \
     ./generatePem.sh && \
+    chmod 400 ~/.aws/awsboot.pem && \
     terraform apply
 
 
