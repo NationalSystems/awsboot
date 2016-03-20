@@ -1,7 +1,4 @@
-appname = "bootdemo"
-dnsname = "bootdemo.aws.rozoom.com"
-aws_key_path = "~/.ssh/bootdemo.pem"
-aws_key_name = "bootdemo"
-aws_route53_zone_id = "Z1U6NVQ0EUU1R3"
+
+# TODO, take this out and figure it out by the dns name
 aws_route53_dns = "aws.rozoom.com"
-region = "us-west-2"
+aws_route53_zone_id = "Z1U6NVQ0EUU1R3"
