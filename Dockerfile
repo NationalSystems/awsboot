@@ -14,8 +14,8 @@ RUN \
 volume /src
 onbuild add . /src
 
-run mkdir /awsboot
-add . /awsboot
+volume /app
+add . /app
 
 volume /root/.aws
 #volume /root/.ssh
@@ -38,8 +38,7 @@ onbuild env aws_iam ${aws_iam}
 
 onbuild env TF_VAR_awsboot_pem needIt
 
-workdir /awsboot
-
+workdir /app
 
 
 ## for debug purposes, uncomment below
