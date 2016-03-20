@@ -30,6 +30,9 @@ onbuild run cat /tmp/id_rsa.pub
 onbuild run mv /tmp/id_rsa /root/.ssh/id_rsa
 onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
+onbuild env TF_VAR_appname bootdemo
+
+
 
 
 
