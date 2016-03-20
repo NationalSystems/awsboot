@@ -1,2 +1,2 @@
 
-docker build -t awsboot .
+docker build -t joshuacalloway/awsboot .
