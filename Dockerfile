@@ -5,7 +5,7 @@ RUN cp /usr/share/zoneinfo/CST6CDT /etc/localtime
 
 RUN \
 	mkdir -p /aws && \
-	apk -Uuv add groff less python py-pip && \
+	apk -Uuv add jq groff less python py-pip && \
 	pip install awscli && \
 	apk --purge -v del py-pip && \
 	rm /var/cache/apk/*
@@ -32,7 +32,10 @@ onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
 onbuild env TF_VAR_appname bootdemo
 
-
+workdir /awsboot
+CMD source setenv.sh && \
+    ./generatePem.sh && \
+    terraform apply
 
 
 
