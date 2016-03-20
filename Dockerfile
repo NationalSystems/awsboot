@@ -30,12 +30,26 @@ onbuild run cat /tmp/id_rsa.pub
 onbuild run mv /tmp/id_rsa /root/.ssh/id_rsa
 onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
-onbuild env TF_VAR_appname bootdemo
+onbuild arg TF_VAR_appname
+onbuild env TF_VAR_appname ${TF_VAR_appname}
+
+onbuild arg aws_iam
+onbuild env aws_iam ${aws_iam}
+
+onbuild env TF_VAR_awsboot_pem needIt
 
 workdir /awsboot
-CMD source setenv.sh && \
-    ./generatePem.sh && \
-    chmod 400 ~/.aws/awsboot.pem && \
+
+
+
+## for debug purposes, uncomment below
+CMD source setenv.sh $aws_iam && \
+    ./generatePem.sh $TF_VAR_appname && \
+    export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` && \
+#    export TF_VAR_myvariable=HelpMe && \
+    chmod 400 ~/.aws/${TF_VAR_appname}.pem && \
+#    env && \
+#    cat ~/.aws/${TF_VAR_appname}.pem
     terraform apply
 
 
