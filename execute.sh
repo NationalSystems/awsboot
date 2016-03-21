@@ -2,4 +2,4 @@
 
 arg=$1
 echo arg is $arg
-source setenv.sh $aws_iam $appname $dnsdomain && terraform $arg
+source setenv.sh $awsprofile $awsuser $appname $dnsdomain && terraform $arg
