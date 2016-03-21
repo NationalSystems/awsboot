@@ -31,7 +31,7 @@ onbuild run mv /tmp/id_rsa /root/.ssh/id_rsa
 onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
 onbuild env dnsdomain $dnsdomain
-onbuild env appname=$appname 
+onbuild env appname $appname
 onbuild env aws_iam needIt
 
 onbuild run echo hello, this is $appname
