@@ -18,7 +18,6 @@ resource "aws_instance" "awsboot" {
     user_data = "${file("base-config.txt")}"
     connection {
       user = "ec2-user"
-      #private_key = "${file("~/.aws/awsboot.pem")}"
       private_key = "${var.awsboot_pem}"
     }
    provisioner "file" {
