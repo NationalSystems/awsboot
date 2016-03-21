@@ -30,17 +30,21 @@ onbuild run cat /tmp/id_rsa.pub
 onbuild run mv /tmp/id_rsa /root/.ssh/id_rsa
 onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
-onbuild env TF_VAR_dnsdomain needIt
-onbuild env TF_VAR_appname needIt
+onbuild env dnsdomain $dnsdomain
+onbuild env appname=$appname 
 onbuild env aws_iam needIt
 
+onbuild run echo hello, this is $appname
 workdir /app
 
 onbuild run sed -i -- "s/awsboot/${TF_VAR_appname}/g" *
+onbuild run /app/verifyRequiredEnvironment.sh
 
 
 ## for debug purposes, uncomment below
 CMD source setenv.sh $aws_iam && \
+    export TF_VAR_appname=$appname && \
+    export TF_VAR_dnsdomain=$dnsdomain && \
     ./generatePem.sh $TF_VAR_appname && \
     export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` && \
     export TF_VAR_aws_route53_zone_id=`aws route53 list-hosted-zones-by-name \
