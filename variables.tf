@@ -1,15 +1,7 @@
-variable "awsboot_pem" {
-
-}
-variable "appname" {
-  default = "bootdemo"
-}
-variable "aws_route53_zone_id" {
-  default = "Z1U6NVQ0EUU1R3"
-}
-variable "aws_route53_dns" {
-  default  "aws.rozoom.com"
-}
+variable "awsboot_pem" {} 
+variable "appname" {} 
+variable "aws_route53_zone_id" {}
+variable "dnsdomain" {}
 
 variable "aws_secret_key" {}
 variable "aws_access_key" {}
