@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
-profile=$1
-appname=$2
-dnsname=$3
+profileName=$1
+userName=$2
+appname=$3
+dnsname=$4
 export PATH=$(pwd):$PATH
-export TF_VAR_aws_access_key=$(findAccessKey.sh $profile)
+export TF_VAR_aws_access_key=$(findAccessKey.sh $profileName $userName)
 export TF_VAR_aws_secret_key=$(findSecretKey.sh $TF_VAR_aws_access_key)
 export TF_VAR_appname=$appname
 

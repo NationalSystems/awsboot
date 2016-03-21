@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
-userName=$1
-aws --profile $userName iam list-access-keys --user-name $userName --output text --query AccessKeyMetadata[*].AccessKeyId
+awsprofile=$1
+awsuser=$2
+aws --profile $awsprofile iam list-access-keys --user-name $awsuser --output text --query AccessKeyMetadata[*].AccessKeyId

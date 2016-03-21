@@ -32,7 +32,8 @@ onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
 onbuild env dnsdomain $dnsdomain
 onbuild env appname $appname
-onbuild env aws_iam needIt
+onbuild env awsprofile $awsprofile
+onbuild env awsuser $awsuser
 
 onbuild run echo hello, this is $appname
 workdir /app
@@ -48,7 +49,7 @@ entrypoint ["./execute.sh"]
 CMD ["plan"]
 
 #ENTRYPOINT source setenv.sh $aws_iam $appname $dnsdomain && terraform 
-#ENTRYPOINT ["sh", "-c", "source", "setenv.sh", "$aws_iam",  "$appname", "$dnsdomain",  "&&", "terraform"]
+#ENTRYPOINT ["sh", "-c", "source", "setenv.sh", "$awsprofile", "$awsuser",  "$appname", "$dnsdomain",  "&&", "terraform"]
 
 #CMD source setenv.sh $aws_iam && \
 #    export TF_VAR_appname=$appname && \
