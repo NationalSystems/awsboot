@@ -42,19 +42,27 @@ onbuild run /app/verifyRequiredEnvironment.sh
 
 
 ## for debug purposes, uncomment below
-CMD source setenv.sh $aws_iam && \
-    export TF_VAR_appname=$appname && \
-    export TF_VAR_dnsdomain=$dnsdomain && \
-    ./generatePem.sh $TF_VAR_appname && \
-    export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` && \
-    export TF_VAR_aws_route53_zone_id=`aws route53 list-hosted-zones-by-name \
-                   --dns-name $TF_VAR_dnsdomain --query HostedZones[0].Id | \
-                    sed 's/\/hostedzone\///'` && \
+#CMD source setenv.sh $aws_iam $appname $dnsdomain && terraform apply
+#entrypoint ["sh", "-c", "./execute.sh"]
+entrypoint ["./execute.sh"]
+CMD ["plan"]
+
+#ENTRYPOINT source setenv.sh $aws_iam $appname $dnsdomain && terraform 
+#ENTRYPOINT ["sh", "-c", "source", "setenv.sh", "$aws_iam",  "$appname", "$dnsdomain",  "&&", "terraform"]
+
+#CMD source setenv.sh $aws_iam && \
+#    export TF_VAR_appname=$appname && \
+#    export TF_VAR_dnsdomain=$dnsdomain && \
+#    ./generatePem.sh $TF_VAR_appname && \
+#    export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` && \
+#    export TF_VAR_aws_route53_zone_id=`aws route53 list-hosted-zones-by-name \
+##                   --dns-name $TF_VAR_dnsdomain --query HostedZones[0].Id | \
+#                    sed 's/\/hostedzone\///'` && \
 #    export TF_VAR_myvariable=HelpMe && \
-    chmod 400 ~/.aws/${TF_VAR_appname}.pem && \
+#    chmod 400 ~/.aws/${TF_VAR_appname}.pem && \
 #    env  \
 #    cat ~/.aws/${TF_VAR_appname}.pem
-    terraform apply
+#    terraform apply
 
 
 
