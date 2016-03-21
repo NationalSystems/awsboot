@@ -12,7 +12,7 @@ export TF_VAR_appname=$appname
 export TF_VAR_dnsdomain=$dnsdomain
 ./generatePem.sh $awsprofile $TF_VAR_appname
 export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` 
-export TF_VAR_aws_route53_zone_id=`aws route53 list-hosted-zones-by-name \
+export TF_VAR_aws_route53_zone_id=`aws --profile $awsprofile route53 list-hosted-zones-by-name \
                    --dns-name $TF_VAR_dnsdomain --query HostedZones[0].Id | \
                     sed 's/\/hostedzone\///'` && \
 chmod 400 ~/.aws/${TF_VAR_appname}.pem
