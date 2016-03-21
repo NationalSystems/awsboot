@@ -30,24 +30,25 @@ onbuild run cat /tmp/id_rsa.pub
 onbuild run mv /tmp/id_rsa /root/.ssh/id_rsa
 onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
-onbuild arg TF_VAR_appname
-onbuild env TF_VAR_appname ${TF_VAR_appname}
-
-onbuild arg aws_iam
-onbuild env aws_iam ${aws_iam}
-
-onbuild env TF_VAR_awsboot_pem needIt
+onbuild env TF_VAR_dnsdomain needIt
+onbuild env TF_VAR_appname needIt
+onbuild env aws_iam needIt
 
 workdir /app
+
+onbuild run sed -i -- "s/awsboot/${TF_VAR_appname}/g" *
 
 
 ## for debug purposes, uncomment below
 CMD source setenv.sh $aws_iam && \
     ./generatePem.sh $TF_VAR_appname && \
     export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` && \
+    export TF_VAR_aws_route53_zone_id=`aws route53 list-hosted-zones-by-name \
+                   --dns-name $TF_VAR_dnsdomain --query HostedZones[0].Id | \
+                    sed 's/\/hostedzone\///'` && \
 #    export TF_VAR_myvariable=HelpMe && \
     chmod 400 ~/.aws/${TF_VAR_appname}.pem && \
-#    env && \
+#    env  \
 #    cat ~/.aws/${TF_VAR_appname}.pem
     terraform apply
 
