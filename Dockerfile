@@ -1,10 +1,8 @@
 from governmentpaas/terraform
-RUN apk add --update tzdata
-RUN cp /usr/share/zoneinfo/CST6CDT /etc/localtime
+RUN apk add --update tzdata && cp /usr/share/zoneinfo/CST6CDT /etc/localtime
 
 
-RUN \
-	mkdir -p /aws && \
+RUN mkdir -p /aws && \
 	apk -Uuv add jq groff less python py-pip && \
 	pip install awscli && \
 	apk --purge -v del py-pip && \
@@ -41,6 +39,7 @@ onbuild run echo "appname is $appname"
 onbuild env awsprofile $awsprofile
 onbuild env awsuser $awsuser
 onbuild env awsinstancetype $awsinstancetype
+onbuild env awsregion $awsregion
 
 onbuild run echo hello, this is $appname
 workdir /app
