@@ -6,7 +6,7 @@ provider "aws" {
 
 resource "aws_instance" "awsboot" {
     ami = "${lookup(var.amis, var.aws_region)}"
-    instance_type = "t2.micro"
+    instance_type = "${var.awsinstancetype}"
     tags {
       Name = "${var.appname}"
       Provisioned = "awsboot"
@@ -18,7 +18,8 @@ resource "aws_instance" "awsboot" {
     user_data = "${file("base-config.txt")}"
     connection {
       user = "ec2-user"
-      private_key = "${var.awsboot_pem}"
+      private_key = "${file("~/.aws/awsboot.pem")}"
+      #private_key = "${var.awspem}"
     }
    provisioner "file" {
         source = "~/.ssh"

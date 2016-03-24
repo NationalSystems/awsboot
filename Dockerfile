@@ -18,6 +18,9 @@ volume /app
 add . /app
 
 volume /root/.aws
+
+# TODO make /root/.ssh a volume directory
+#      for security reasons
 #volume /root/.ssh
 
 run mkdir /root/.ssh
@@ -31,39 +34,28 @@ onbuild run mv /tmp/id_rsa /root/.ssh/id_rsa
 onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 
 onbuild env dnsdomain $dnsdomain
-onbuild env appname $appname
+
+# TODO take out appname variable.  We can figure this out.
+onbuild env awsname $awsprofile
+onbuild run echo "appname is $appname"
 onbuild env awsprofile $awsprofile
 onbuild env awsuser $awsuser
+onbuild env awsinstancetype $awsinstancetype
 
 onbuild run echo hello, this is $appname
 workdir /app
 
-onbuild run sed -i -- "s/awsboot/${TF_VAR_appname}/g" *
 onbuild run /app/verifyRequiredEnvironment.sh
 
 
+
 ## for debug purposes, uncomment below
-#CMD source setenv.sh $aws_iam $appname $dnsdomain && terraform apply
-#entrypoint ["sh", "-c", "./execute.sh"]
+#entrypoint ["sh"]
 entrypoint ["./execute.sh"]
+#entrypoint ["./debug.sh"]
 CMD ["plan"]
 
-#ENTRYPOINT source setenv.sh $aws_iam $appname $dnsdomain && terraform 
-#ENTRYPOINT ["sh", "-c", "source", "setenv.sh", "$awsprofile", "$awsuser",  "$appname", "$dnsdomain",  "&&", "terraform"]
 
-#CMD source setenv.sh $aws_iam && \
-#    export TF_VAR_appname=$appname && \
-#    export TF_VAR_dnsdomain=$dnsdomain && \
-#    ./generatePem.sh $TF_VAR_appname && \
-#    export TF_VAR_awsboot_pem=`cat ~/.aws/${TF_VAR_appname}.pem` && \
-#    export TF_VAR_aws_route53_zone_id=`aws route53 list-hosted-zones-by-name \
-##                   --dns-name $TF_VAR_dnsdomain --query HostedZones[0].Id | \
-#                    sed 's/\/hostedzone\///'` && \
-#    export TF_VAR_myvariable=HelpMe && \
-#    chmod 400 ~/.aws/${TF_VAR_appname}.pem && \
-#    env  \
-#    cat ~/.aws/${TF_VAR_appname}.pem
-#    terraform apply
 
 
 
