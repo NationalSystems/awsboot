@@ -6,13 +6,11 @@ variable "dnsdomain" {}
 
 variable "aws_secret_key" {}
 variable "aws_access_key" {}
-variable "aws_region" {
-  default = "us-west-2"
-}
+variable "aws_region" {}
 variable "amis" {
   default = {
     eu-west-1 = "ami-e1398992"
-    us-west-2 = "ami-63b25203"
+    us-west-2 = "ami-c229c0a2"
     us-east-1 = "ami-8fcee4e5" 
   }
 }
