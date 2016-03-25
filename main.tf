@@ -34,10 +34,8 @@ resource "aws_instance" "awsboot" {
           "git clone https://github.com/joshuacalloway/jenkins.git",
           "cp -R /home/ec2-user/.ssh /home/ec2-user/jenkins/.ssh",
           "cd /home/ec2-user/jenkins && docker build -t jenkins .",
+          "cd /home/ec2-user/jenkins && ./startJenkins.sh"
          ]
-    }
-    provisioner "remote-exec" {
-        script = "~/jenkins/startJenkins.sh"
     }
     
     tags {
