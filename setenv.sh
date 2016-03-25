@@ -1,10 +1,5 @@
 #!/usr/bin/env sh
 
-awsprofile=${awsprofile:-default}
-awsuser=${awsuser}
-appname=${appname:-awsboot}
-awsregion=${awsregion:-us-west-2}
-
 export PATH=$(pwd):$PATH
 export TF_VAR_aws_access_key=$(findAccessKey.sh $awsprofile $awsuser)
 export TF_VAR_aws_secret_key=$(findSecretKey.sh $TF_VAR_aws_access_key)

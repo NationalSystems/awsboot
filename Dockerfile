@@ -35,6 +35,7 @@ onbuild env dnsdomain $dnsdomain
 
 # TODO take out appname variable.  We can figure this out.
 onbuild run echo "appname is $appname"
+onbuild env appname ${appname:-awsboot}
 onbuild env awsprofile ${awsprofile:-default}
 onbuild env awsuser $awsuser
 onbuild env awsinstancetype ${awsinstancetype:-t2.micro}
