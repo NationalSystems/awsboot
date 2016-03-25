@@ -11,7 +11,7 @@ resource "aws_instance" "awsboot" {
       Name = "${var.appname}"
       Provisioned = "awsboot"
     }
-    vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
+    vpc_security_group_ids = ["${aws_security_group.awsboot.id}"]
     subnet_id = "${aws_subnet.awsboot.id}"
     key_name = "${var.appname}"
     associate_public_ip_address = true
@@ -37,7 +37,7 @@ resource "aws_instance" "awsboot" {
          ]
     }
     provisioner "remote-exec" {
-        script = "startJenkins.sh"
+        script = "~/jenkins/startJenkins.sh"
     }
     
     tags {

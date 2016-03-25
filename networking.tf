@@ -31,28 +31,6 @@ resource "aws_main_route_table_association" "awsboot" {
   route_table_id = "${aws_route_table.awsboot.id}"
 }
 
-resource "aws_security_group" "allow_all" {
-  name = "allow_all"
-  description = "Allow all inbound traffic"
-  vpc_id = "${aws_vpc.awsboot.id}"
-  ingress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-  }
-  tags {
-     Provisioned = "awsboot"
-  }
-}
-
 resource "aws_subnet" "awsboot" {
   vpc_id = "${aws_vpc.awsboot.id}"
   cidr_block = "10.1.2.0/28"
