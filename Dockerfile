@@ -1,4 +1,5 @@
-from governmentpaas/terraform
+from joshuacalloway/terraform
+#from governmentpaas/terraform
 RUN apk add --update tzdata && cp /usr/share/zoneinfo/CST6CDT /etc/localtime
 
 
