@@ -34,12 +34,11 @@ onbuild run mv /tmp/id_rsa.pub /root/.ssh/id_rsa.pub
 onbuild env dnsdomain $dnsdomain
 
 # TODO take out appname variable.  We can figure this out.
-onbuild env awsname $awsprofile
 onbuild run echo "appname is $appname"
-onbuild env awsprofile $awsprofile
+onbuild env awsprofile ${awsprofile:-default}
 onbuild env awsuser $awsuser
-onbuild env awsinstancetype $awsinstancetype
-onbuild env awsregion $awsregion
+onbuild env awsinstancetype ${awsinstancetype:-t2.micro}
+onbuild env awsregion ${awsregion:-us-west-2}
 
 onbuild run echo hello, this is $appname
 workdir /app

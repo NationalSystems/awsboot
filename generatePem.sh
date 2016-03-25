@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-awsprofile=$1
-appname=$2
+appname=$1
 
 rm -rf ~/.aws/${appname}.pem
 
