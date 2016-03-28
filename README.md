@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/joshuacalloway/awsboot.svg?branch=master)](https://travis-ci.org/joshuacalloway/awsboot)
+
 # awsboot
 
 This is a simple project that allows developers to add Jenkins CI, launch their project into AWS ec2.
