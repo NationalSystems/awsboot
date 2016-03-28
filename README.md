@@ -4,6 +4,10 @@
 
 This is a simple project that allows developers to add Jenkins CI, launch their project into AWS ec2.
 
+# see demo, cloning a facebook react github project and launching it into AWS with jenkins CI
+
+[![Demo CountPages alpha](http://img.youtube.com/vi/RA11JGz8fSQ/default.jpg)](https://www.youtube.com/watch?v=RA11JGz8fSQ)
+
 Instructions
 ### 1. build a docker image by adding Dockerfile to your project
      ```bash
@@ -22,6 +26,3 @@ Instructions
       user password for jenkins is admin/awsbootPassw0rd1 ( default )
     ```
 
-see video for how to clone a facebook react project on github and launched it into aws
-
-[![Demo CountPages alpha](http://img.youtube.com/vi/RA11JGz8fSQ/default.jpg)](https://www.youtube.com/watch?v=RA11JGz8fSQ)
