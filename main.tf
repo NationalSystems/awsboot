@@ -16,7 +16,9 @@ resource "aws_instance" "awsboot" {
     key_name = "${var.appname}"
     associate_public_ip_address = true
     user_data = "${file("base-config.txt")}"
-    volume_size = 32
+    root_block_device {
+       volume_size = 32
+    }
     connection {
       user = "ec2-user"
       private_key = "${file("~/.aws/awsboot.pem")}"
