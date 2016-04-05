@@ -43,5 +43,4 @@ resource "aws_instance" "awsboot" {
     tags {
        Provisioned = "awsboot"
     }
-  
 }
