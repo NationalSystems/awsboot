@@ -1,5 +1,5 @@
-variable "appname" {} 
-variable "awspem" {} 
+variable "appname" {}
+variable "awspem" {}
 variable "awsinstancetype" {}
 variable "aws_route53_zone_id" {}
 variable "dnsdomain" {}
