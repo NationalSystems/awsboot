@@ -32,7 +32,7 @@ onbuild env awsregion ${awsregion:-us-west-2}
 
 onbuild run echo hello, this is $appname
 workdir /app
-onbuild copy *.tf  /app/
+onbuild copy .  /app/
 
 onbuild run /app/verifyRequiredEnvironment.sh
 
