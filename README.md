@@ -10,19 +10,22 @@ This is a simple project that allows developers to add Jenkins CI, launch their 
 
 Instructions
 ### 1. build a docker image by adding Dockerfile to your project
-     ```bash
-      echo "from joshuacalloway/awsboot" > Dockerfile
-      echo "env awsuser jcalloway" >> Dockerfile
-      echo "env appname myapp" >> Dockerfile
-      echo "env dnsdomain mopedjc.com" >> Dockerfile
+
+##### Dockerfile
+```
+from joshuacalloway/awsboot
+env awsuser jcalloway
+env appname myapp
+env dnsdomain mopedjc.com
+```      
+        
+##### Build Docker image     
       docker build -t myapp .
       docker run -v ~/.aws:/root/.aws myapp apply
-     ```
+    
 
 ### 2. Configure jenkins to build your project
-     ```bash
       open chrome and visit  "http://myapp.mopedjc.com:8080"
       configure jenkins to build your project
       user password for jenkins is admin/awsbootPassw0rd1 ( default )
-    ```
 
