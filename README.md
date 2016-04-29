@@ -5,7 +5,6 @@
 This is a simple project that allows developers to add Jenkins CI, launch their project into AWS ec2.
 
 # see demo, cloning a facebook react github project and launching it into AWS with jenkins CI
-
 [![Demo CountPages alpha](http://img.youtube.com/vi/RA11JGz8fSQ/default.jpg)](https://www.youtube.com/watch?v=RA11JGz8fSQ)
 
 Instructions
