@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/joshuacalloway/awsboot.svg?branch=master)](https://travis-ci.org/joshuacalloway/awsboot)
+[![Build Status](https://travis-ci.org/mlong168/awsboot.svg?branch=master)](https://travis-ci.org/mlong168/awsboot)
 
 # awsboot
 
@@ -12,8 +12,8 @@ Instructions
 
 ##### Dockerfile
 ```
-from joshuacalloway/awsboot
-env awsuser jcalloway
+from mlong168/awsboot
+env awsuser mlong
 env appname myapp
 env dnsdomain mopedjc.com
 ```      

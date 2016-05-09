@@ -1,2 +1,2 @@
 
-docker build -t joshuacalloway/awsboot .
+docker build -t nscithelp/awsboot .

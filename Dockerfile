@@ -1,4 +1,4 @@
-from joshuacalloway/terraform
+from nscithelp/terraform
 #from governmentpaas/terraform
 RUN apk add --update tzdata && cp /usr/share/zoneinfo/CST6CDT /etc/localtime
 
