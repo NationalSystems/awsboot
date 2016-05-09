@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mlong168/awsboot.svg?branch=master)](https://travis-ci.org/mlong168/awsboot)
+[![Build Status](https://travis-ci.org/NationalSystems/awsboot.svg?branch=master)](https://travis-ci.org/NationalSystems/awsboot)
 
 # awsboot
 
@@ -12,16 +12,15 @@ Instructions
 
 ##### Dockerfile
 ```
-from mlong168/awsboot
+from nscithelp/awsboot
 env awsuser mlong
 env appname myapp
 env dnsdomain mopedjc.com
-```      
-        
+```
+
 ##### Build Docker image     
       docker build -t myapp .
       docker run -v ~/.aws:/root/.aws myapp apply
-    
 
 ### 2. Configure jenkins to build your project
       open chrome and visit  "http://myapp.mopedjc.com:8080"
